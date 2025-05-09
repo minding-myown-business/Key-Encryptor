@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
-</head>
-<body>
-  <p><strong>Enter Key:</strong></p>
-  <input type="text" id="keyInput" placeholder="e.g., 2">
-  <p>Enter Cipher</p>
-  <input type="text" id="codeInput" placeholder="e.g., 1.11.2.22">
-  <button onclick="runPython()">Decode</button>
-  <p><strong>Result:</strong> <span id="output"></span></p>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <title>Key Encryptor</title>
+  </head>
+  <body>
+    <p><strong>Enter Key:</strong></p>
+    <input type="text" id="keyInput" placeholder="e.g., 2" />
+    <p>Enter Cipher</p>
+    <input type="text" id="codeInput" placeholder="e.g., 1.11.2.22" />
+    <button onclick="runPython()">Decode</button>
+    <p><strong>Result:</strong> <span id="output"></span></p>
 
-  <script>
-    async function runPython() {
-      const pyodide = await loadPyodide();
-      
-      // Get user input from HTML
-      const key = document.getElementById("keyInput").value;
-      const decode = document.getElementById("codeInput").value;
-      pyodide.globals.set("key", key);
-      pyodide.globals.set("decode_input", codeInput);
+    <script>
+      async function runPython() {
+        const pyodide = await loadPyodide();
 
-      // Run Python code
-      const result = await pyodide.runPythonAsync(`
+        // Get user input from HTML
+        const key = document.getElementById("keyInput").value;
+        const decode = document.getElementById("codeInput").value;
+        pyodide.globals.set("key", key);
+        pyodide.globals.set("decode_input", codeInput);
+
+        // Run Python code
+        const result = await pyodide.runPythonAsync(`
 import string
 
 alphabet = string.ascii_lowercase
@@ -43,9 +46,9 @@ output = "".join(code_map.get(part, "?") for part in parts)
 output  # return result
       `);
 
-      // Show result in HTML
-      document.getElementById("output").textContent = result;
-    }
-  </script>
-</body>
+        // Show result in HTML
+        document.getElementById("output").textContent = result;
+      }
+    </script>
+  </body>
 </html>
