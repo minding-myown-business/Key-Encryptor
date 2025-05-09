@@ -15,4 +15,4 @@
 
 ## Miscellaneous
 
-- [ ] Add a LICENSE
+- [x] Add a LICENSE
