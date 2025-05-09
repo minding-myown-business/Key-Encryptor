@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+</head>
+<body>
+  <p><strong>Enter Key:</strong></p>
+  <input type="text" id="keyInput" placeholder="e.g., 2">
+  <p>Enter Cipher</p>
+  <input type="text" id="codeInput" placeholder="e.g., 1.11.2.22">
+  <button onclick="runPython()">Decode</button>
+  <p><strong>Result:</strong> <span id="output"></span></p>
+
+  <script>
+    async function runPython() {
+      const pyodide = await loadPyodide();
+      
+      // Get user input from HTML
+      const key = document.getElementById("keyInput").value;
+      const decode = document.getElementById("codeInput").value;
+      pyodide.globals.set("key", key);
+      pyodide.globals.set("decode_input", codeInput);
+
+      // Run Python code
+      const result = await pyodide.runPythonAsync(`
+import string
+
+alphabet = string.ascii_lowercase
+code_map = {}
+
+index = key
+for digit in range(1, 10):
+    for repeat in range(1, 4):
+        if index >= 26:
+            break
+        code = str(digit) * repeat
+        letter = alphabet[index]
+        code_map[code] = letter
+        index += 1
+
+parts = decode_input.split(".")
+output = "".join(code_map.get(part, "?") for part in parts)
+output  # return result
+      `);
+
+      // Show result in HTML
+      document.getElementById("output").textContent = result;
+    }
+  </script>
+</body>
+</html>
