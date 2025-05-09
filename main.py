@@ -1,9 +1,9 @@
 import string
 
 alphabet = string.ascii_lowercase
-decode_map = {}
+map = {}
 
-
+## build map -not inverted ##
 index = 0
 for digit in range(1, 10):
     for repeat in range(1, 4):
@@ -11,6 +11,11 @@ for digit in range(1, 10):
             break
         code = str(digit) * repeat
         letter = alphabet[index]
-        decode_map[code] = letter
+        map[code] = letter
         index += 1
-print(decode_map)
+
+decode_input = input("Enter encoded string (use '.' between each number-letter): ")
+
+parts = decode_input.split(".")
+for code in parts:
+    print(map.get(code, "?"), end="")
