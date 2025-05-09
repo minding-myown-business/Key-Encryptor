@@ -8,9 +8,10 @@
 ## Development
 
 - [x] Add a TODO
-- [ ] Implement cæsar cipher part of key system
+- [x] Implement cæsar cipher part of key system
 - [x] Implement numbers part of key system
 - [ ] Implement Encoding Feature
+- [x] Implement Decoding Feature
 - [ ] Test, test, test
 - [ ] Deploy, deploy, deploy
 
