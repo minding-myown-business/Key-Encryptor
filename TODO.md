@@ -12,6 +12,7 @@
 - [x] Implement numbers part of key system
 - [ ] Implement Encoding Feature
 - [x] Implement Decoding Feature
+- [ ] Implement Inversed Alphabet Encoding, Decoding
 - [ ] Test, test, test
 - [ ] Deploy, deploy, deploy
 

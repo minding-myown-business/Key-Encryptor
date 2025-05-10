@@ -1,18 +1,36 @@
 import string
 
 alphabet = string.ascii_lowercase
-map = {} # map of 1: a, 11: b etc.
+reversed_alphabet = string.ascii_lowercase[::-1]
+char_map = {} # map of 1: a, 11: b etc.
+reversed_map = {} # map of 1: z, 11: y, x etc.
 
 ## build map -not inverted ##
-index = 0
-for digit in range(1, 10):
-    for repeat in range(1, 4):
-        if index >= 26:
-            break
-        code = str(digit) * repeat
-        letter = alphabet[index]
-        map[code] = letter
-        index += 1
+
+def build_map():
+    index = 0
+    for digit in range(1, 10):  
+        for repeat in range(1, 4):
+            if index >= 26:
+                break
+            code = str(digit) * repeat
+            letter = alphabet[index]
+            char_map[code] = letter
+            index += 1
+
+## build reversed map ##
+
+def build_reversed_map():
+    index = 0
+    for digit in range(1, 10):  
+        for repeat in range(1, 4):
+            if index >= 26:
+                break
+            code = str(digit) * repeat
+            letter = reversed_alphabet[index]
+            reversed_map[code] = letter
+            index += 1
+
 
 def apply_caesar_shift(txt, key):
     result = ""
@@ -25,13 +43,17 @@ def apply_caesar_shift(txt, key):
             result += char
     return result
 
+## Build maps before using ##
+build_map()
+build_reversed_map()
+
 decode_input = input("Enter encoded string (use '.' between each number-letter): ")
 caesar_key = int(input("Give the key, please: "))
 
 parts = decode_input.split(".")
 decoded = ""
 for code in parts:
-    decoded += map.get(code, code)
+    decoded += char_map.get(code, code)
 final_result = apply_caesar_shift(decoded, caesar_key)
 print(final_result)
 # for code in parts:
