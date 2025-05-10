@@ -1,0 +1,21 @@
+{
+  "name": "key-encryptor-web",
+  "version": "1.0.0",
+  "description": "A web interface for the Python key encryptor application.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "live-server public",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "webpack": "^5.24.4",
+    "webpack-cli": "^4.5.0",
+    "live-server": "^1.2.1"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}

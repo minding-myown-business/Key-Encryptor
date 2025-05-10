@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Key Encryptor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Key Encryptor</h1>
+      <div class="form-group">
+        <label for="inputText">Enter text to encode or decode:</label>
+        <textarea
+          id="inputText"
+          rows="4"
+          placeholder="Type your text here..."
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="caesarKey">Caesar Key:</label>
+        <input type="number" id="caesarKey" placeholder="Enter Caesar key" />
+      </div>
+      <div class="form-group">
+        <label for="encodeOrDecode">Choose an option:</label>
+        <select id="encodeOrDecode">
+          <option value="encode">Encode</option>
+          <option value="decode">Decode</option>
+        </select>
+      </div>
+      <button id="processButton">Process</button>
+      <div id="result" class="result"></div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
