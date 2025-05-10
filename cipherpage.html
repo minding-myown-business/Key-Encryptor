@@ -7,9 +7,9 @@
     <title>Key Encryptor</title>
   </head>
   <body>
-    <p><strong>Enter Key:</strong></p>
-    <input type="text" id="keyInput" placeholder="e.g., 2" />
-    <p>Enter Cipher</p>
+    <p><strong>Enter Key (starting index):</strong></p>
+    <input type="text" id="keyInput" placeholder="e.g., 0" />
+    <p>Enter Encoded Cipher (use '.' between codes):</p>
     <input type="text" id="codeInput" placeholder="e.g., 1.11.2.22" />
     <button onclick="runPython()">Decode</button>
     <p><strong>Result:</strong> <span id="output"></span></p>
@@ -18,20 +18,20 @@
       async function runPython() {
         const pyodide = await loadPyodide();
 
-        // Get user input from HTML
-        const key = document.getElementById("keyInput").value;
+        // Get and pass input values
+        const key = parseInt(document.getElementById("keyInput").value) || 0;
         const decode = document.getElementById("codeInput").value;
-        pyodide.globals.set("key", key);
-        pyodide.globals.set("decode_input", codeInput);
 
-        // Run Python code
+        pyodide.globals.set("key", key);
+        pyodide.globals.set("decode_input", decode);
+
         const result = await pyodide.runPythonAsync(`
 import string
 
 alphabet = string.ascii_lowercase
 code_map = {}
 
-index = key
+index = int(key)
 for digit in range(1, 10):
     for repeat in range(1, 4):
         if index >= 26:
@@ -43,10 +43,9 @@ for digit in range(1, 10):
 
 parts = decode_input.split(".")
 output = "".join(code_map.get(part, "?") for part in parts)
-output  # return result
-      `);
+output
+        `);
 
-        // Show result in HTML
         document.getElementById("output").textContent = result;
       }
     </script>
