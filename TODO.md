@@ -13,6 +13,7 @@
 - [ ] Implement Encoding Feature
 - [x] Implement Decoding Feature
 - [ ] Implement Inversed Alphabet Encoding, Decoding
+- [ ] Make the webpage pretty and add all functions
 - [ ] Test, test, test
 - [ ] Deploy, deploy, deploy
 
