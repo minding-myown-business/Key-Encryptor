@@ -67,7 +67,7 @@ if encode_or_decode == "1":
     print("bap") ## placeholder for encoding logic ##
 else:
     decode_input = input("Enter encoded string (use '.' between letters, '..' for space): ")
-    inversed_tf = input("Is the encoded string reversed? (y/n): ")
+    reversed_tf = input("Is the encoded string reversed? (y/n): ")
     caesar_key = int(input("Enter Caesar key: "))
 
     parts = decode_input.split(".")
@@ -77,12 +77,12 @@ else:
         if code == "":
             decoded += " "
         else:
-            if inversed_tf.lower() == "y":
-                decoded += reversed_map.get(code, "?")
+            if reversed_tf.lower() == "y":
+                decoded += reversed_map.get(code, code) ## why are we defaulting to "?"? that just makes us not able to do spaces, punctuation etc ##
             else:
-                decoded += char_map.get(code, "?")
+                decoded += char_map.get(code, code) ## why are we defaulting to "?"? that just makes us not able to do spaces, punctuation etc ##
 
-    if inversed_tf.lower() == "y":
+    if reversed_tf.lower() == "y":
         final_result = apply_reverse_caesar_shift(decoded, caesar_key)
     else:
         final_result = apply_caesar_shift(decoded, caesar_key)
